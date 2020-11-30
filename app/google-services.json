@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "91048570765",
+    "firebase_url": "https://smn-aggregator-a2810.firebaseio.com",
+    "project_id": "smn-aggregator-a2810",
+    "storage_bucket": "smn-aggregator-a2810.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91048570765:android:3d4f0ee49f1454e0db97c4",
+        "android_client_info": {
+          "package_name": "com.example.smnaggregator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91048570765-7r8fbj6e2f5tr8bl2m1t7n2c8cj6mnrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs8Nve95D579eJCNl-7IgTYqJwWJFy7Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91048570765-7r8fbj6e2f5tr8bl2m1t7n2c8cj6mnrj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
