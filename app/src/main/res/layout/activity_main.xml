@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
+    android:background="@drawable/sign"
     tools:context=".MainActivity">
 
     <ImageView
@@ -42,5 +43,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_btn" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="328dp"
+        android:layout_height="96dp"
+        android:background="#0003A9F4"
+        android:text="SMN Aggregator"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#7A0000"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

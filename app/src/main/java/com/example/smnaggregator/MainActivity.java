@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //initialize buttons//
         mRegisterBtn = findViewById(R.id.register_btn);
         mLoginBtn = findViewById(R.id.login_btn);
@@ -26,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //start RegisterActivity//
-
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
 
             }
         });
     }
+
 }
