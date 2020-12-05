@@ -4,50 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     android:background="@drawable/sign"
+    android:padding="20dp"
     tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/ConfirmPassword"
+        android:layout_width="376dp"
+        android:layout_height="44dp"
+        android:layout_below="@id/emailText"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/header3"
+        android:drawableLeft="@android:drawable/ic_secure"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:textColor="#0B0B0B"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/PasswwordInput"
+        app:layout_constraintTop_toBottomOf="@+id/PasswwordInput" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="267dp"
+        android:layout_height="187dp"
+        android:layout_marginTop="32dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266"
-        app:srcCompat="@drawable/tif_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/fb_login_button"
+        app:srcCompat="@drawable/tif_logo"
+        tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/register_btn"
-        style="@style/Base.Widget.AppCompat.Button.Colored"
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/login_btn"
+    <EditText
+        android:id="@+id/PasswwordInput"
+        android:layout_width="376dp"
+        android:layout_height="44dp"
+        android:layout_below="@id/emailText"
         android:layout_marginTop="16dp"
-        android:text="Register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        android:background="@drawable/header3"
+        android:drawableLeft="@android:drawable/ic_secure"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#0B0B0B"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/emailText"
+        app:layout_constraintTop_toBottomOf="@+id/emailText" />
 
-    <Button
-        android:id="@+id/login_btn"
-        style="@style/Base.Widget.AppCompat.Button.Colored"
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp"
-        android:text="Login"
+    <EditText
+        android:id="@+id/emailText"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/textViewRegister"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/header3"
+        android:drawableLeft="@android:drawable/sym_action_email"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/info_text"
+        tools:ignore="UnknownId"
+        tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/name_txt"
         android:layout_width="328dp"
         android:layout_height="96dp"
+        android:layout_marginTop="16dp"
         android:background="#0003A9F4"
         android:text="SMN Aggregator"
         android:textAlignment="center"
@@ -55,9 +82,59 @@
         android:textColor="#7A0000"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_button"
+        android:layout_width="269dp"
+        android:layout_height="26dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/facebookicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info2_text"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="229dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Login with email"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#2B1616"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_txt" />
+
+    <TextView
+        android:id="@+id/info2_text"
+        android:layout_width="211dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="16dp"
+        android:text="or"
+        android:textAlignment="center"
+        android:textColor="#471919"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="CREATE ACCOUNT AND LOGIN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ConfirmPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
