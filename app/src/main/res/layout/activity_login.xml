@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/sign"
     android:padding="20dp"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <EditText
         android:id="@+id/ConfirmPassword"
