@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        //Check if the user is already logged in -> send them to an other window of the app
         if(mAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(), MenuActivity.class));
             finish();

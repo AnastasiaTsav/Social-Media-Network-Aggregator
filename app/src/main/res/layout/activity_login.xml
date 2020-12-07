@@ -75,7 +75,7 @@
     <TextView
         android:id="@+id/name_txt"
         android:layout_width="328dp"
-        android:layout_height="96dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="#0003A9F4"
         android:text="SMN Aggregator"
@@ -94,7 +94,7 @@
         android:layout_height="26dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:background="@drawable/facebookicon"
+        android:background="@drawable/com_facebook_button_send_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info2_text"
