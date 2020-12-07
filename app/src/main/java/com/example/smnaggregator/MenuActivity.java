@@ -18,7 +18,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
     }
     public void logout(View view){
-        FirebaseAuth.getInstance().signOut();
+        FirebaseAuth.getInstance().signOut(); //User Disconnection
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
