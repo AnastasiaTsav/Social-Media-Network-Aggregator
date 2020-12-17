@@ -7,86 +7,57 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity {
+public class CreateAccountActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "CreateAccountActivity";
 
 
-    private EditText loginEmail;
-    private EditText loginPassword;
+    private EditText createEmail;
+    private EditText createPassword;
     private EditText confPassword;
-    private Button loginButton;
-    private Button fbLoginBtn;
+    private Button createButton;
     private FirebaseAuth mAuth;
-    private CallbackManager mCallbackManager;
-
-    //USER INFORMATION
-    private TextView textViewUser;
-    private ImageView mLogo;
-
-    private FirebaseAuth.AuthStateListener authStateListener;
-    private AccessTokenTracker accessTokenTracker;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate starts");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_create_account);
 
-        loginEmail = (EditText) findViewById(R.id.emailText);
-        loginPassword = (EditText) findViewById(R.id.PasswwordInput);
+        createEmail = (EditText) findViewById(R.id.emailText);
+        createPassword = (EditText) findViewById(R.id.PasswwordInput);
         confPassword = (EditText) findViewById(R.id.ConfirmPassword);
-        mLogo = (ImageView) findViewById(R.id.userLogo);
-        textViewUser = (TextView) findViewById(R.id.userInfo);
         //initialize firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        //Check if the user is already logged in -> send them to an other window of the app
-        if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), MenuActivity.class));
-            finish();
-        }
 
-
-        loginButton = (Button) findViewById(R.id.login_btn);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        createButton = (Button) findViewById(R.id.create_btn);
+        createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = loginEmail.getText().toString().trim();
-                String password = loginPassword.getText().toString().trim();
+                String email = createEmail.getText().toString().trim();
+                String password = createPassword.getText().toString().trim();
                 String confirm = confPassword.getText().toString().trim();
 
 
                 if (TextUtils.isEmpty(email)) {
-                    loginEmail.setError("Email is Required");
+                    createEmail.setError("Email is Required");
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    loginPassword.setError("Password is Required");
+                    createPassword.setError("Password is Required");
                     return;
                 }
 
@@ -95,12 +66,12 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 if (password.length() < 6) {
-                    loginPassword.setError("The Password must be at least 6 digits");
+                    createPassword.setError("The Password must be at least 6 digits");
                     return;
                 }
 
                 if (!(password.equals(confirm))) {
-                    Toast.makeText(LoginActivity.this, "Passwords must be matched", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccountActivity.this, "Passwords must be matched", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -111,13 +82,13 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //Sign in success, sending them on another activity
                             Log.d(TAG, "create user with email: success");
-                            Toast.makeText(LoginActivity.this, "User created", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateAccountActivity.this, "User created", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(getApplicationContext(), MenuActivity.class));
                         } else {
                             //If sign in fails, display a message to the user
                             Log.w(TAG, "createUserWithEmail: failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateAccountActivity.this, "Authentication failed ", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -125,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Initialize Facebook Login button
+        /*// Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
         LoginButton fbLoginBtn = (LoginButton) findViewById(R.id.fb_login_button);
         fbLoginBtn.setReadPermissions("email", "public_profile");
@@ -147,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "facebook:onError", error);
 
             }
-        });
+        }); */
 
     }
 
@@ -163,15 +134,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(){
-        Toast.makeText(LoginActivity.this, "You're logged in ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CreateAccountActivity.this, "You're logged in ", Toast.LENGTH_SHORT).show();
 
-        Intent accountIntent = new Intent(LoginActivity.this, MenuActivity.class);
+        Intent accountIntent = new Intent(CreateAccountActivity.this, MenuActivity.class);
         startActivity(accountIntent);
         finish();
 
     }
 
 
+    /*
      @Override
      protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -195,12 +167,12 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(CreateAccountActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-    }
+    }*/
 
 
 
