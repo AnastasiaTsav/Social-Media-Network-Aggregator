@@ -6,18 +6,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-
 import androidx.appcompat.app.AppCompatActivity;
-
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.OAuthProvider;
 
 public class MenuActivity extends AppCompatActivity {
+
+    private static final String TAG = "MenuActivity";
+
     private Button hashtagButton;
     private Button postButton;
     private Button storyButton;
+
+    private FirebaseAuth mAuth;
     OAuthProvider.Builder provider = OAuthProvider.newBuilder("twitter.com");
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +32,7 @@ public class MenuActivity extends AppCompatActivity {
         hashtagButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getApplicationContext(), HashtagActivity.class));
             }
         });
 

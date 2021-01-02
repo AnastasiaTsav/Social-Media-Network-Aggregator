@@ -1,8 +1,5 @@
 package com.example.smnaggregator;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,9 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Login_Activity extends AppCompatActivity {
+
     private static final String TAG="Login_Activity";
     private EditText loginEmail;
     private EditText loginPassword;
@@ -45,7 +44,7 @@ public class Login_Activity extends AppCompatActivity {
             finish();
         }
 
-        loginButton=findViewById(R.id.login_button);
+        loginButton=findViewById(R.id.twitterLoginBtn);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
