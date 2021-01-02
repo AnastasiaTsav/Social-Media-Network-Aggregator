@@ -3,13 +3,13 @@ package com.example.smnaggregator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.OAuthProvider;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -20,7 +20,6 @@ public class MenuActivity extends AppCompatActivity {
     private Button storyButton;
 
     private FirebaseAuth mAuth;
-    OAuthProvider.Builder provider = OAuthProvider.newBuilder("twitter.com");
 
 
     @Override
@@ -33,6 +32,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), HashtagActivity.class));
+                Log.d(TAG, "Button presses successfully");
             }
         });
 

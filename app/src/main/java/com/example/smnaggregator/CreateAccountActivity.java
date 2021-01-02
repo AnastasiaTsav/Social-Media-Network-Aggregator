@@ -35,9 +35,9 @@ public class CreateAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        createEmail = (EditText) findViewById(R.id.emailText);
+        createEmail = findViewById(R.id.emailText);
         createPassword = (EditText) findViewById(R.id.PasswwordInput);
-        confPassword = (EditText) findViewById(R.id.ConfirmPassword);
+        confPassword = findViewById(R.id.ConfirmPassword);
         //initialize firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
