@@ -3,6 +3,7 @@
     <string name="facebook_app_id">192073005871681</string>
     <string name="fb_login_protocol_scheme">fb192073005871681</string>
     <string name="twittersecret">twittersecret</string>
+    <string name="twitter_oauth_verifier">oauth_verifier</string>
 
 
 </resources>

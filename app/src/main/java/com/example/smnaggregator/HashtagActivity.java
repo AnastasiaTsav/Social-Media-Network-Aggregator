@@ -35,6 +35,7 @@ public class HashtagActivity extends AppCompatActivity implements Serializable {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    
 
 
     @Override
@@ -145,8 +146,6 @@ public class HashtagActivity extends AppCompatActivity implements Serializable {
 
 
 }
-
-
 
 
 
