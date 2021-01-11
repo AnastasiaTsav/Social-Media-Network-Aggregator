@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Welcome to the trends section"
+        android:text="Welcome to trending hashtags"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TrendsWelcome" />
 
     <ListView
-        android:id="@+id/trendsList"
+        android:id="@+id/trendsListView"
         android:layout_width="325dp"
         android:layout_height="460dp"
         android:layout_marginBottom="8dp"

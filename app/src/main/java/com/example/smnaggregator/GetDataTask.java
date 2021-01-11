@@ -4,34 +4,32 @@ import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.regex.Pattern;
+import java.util.List;
 
-public class GetDataTask extends AsyncTask<String, Void, String> {
+public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
 
-    public static final String TAG = "RestAPI";
-
-    public String jsonResult;
+    public static final String TAG = "GetDataTask";
     public static final String TAG2 = "TwitterUtils";
 
+    public List<Post> postList;
 
     public String downloadRestData(String remoteUrl) {
+
         Log.d(TAG, "Downloading data....");
         StringBuilder sb = new StringBuilder();
         HttpURLConnection httpConnection = null;
         BufferedReader bufferedReader = null;
         StringBuilder response = new StringBuilder();
+
         try {
-            URL url = new URL(ConstantsUtils.URL_GREECE_TRENDING);
+            URL url = new URL(remoteUrl);
             httpConnection = (HttpURLConnection) url.openConnection();
             httpConnection.setRequestMethod("GET");
 
@@ -41,18 +39,17 @@ public class GetDataTask extends AsyncTask<String, Void, String> {
                     + jsonObjectDocument.getString("access_token");
             httpConnection.setRequestProperty("Authorization", token);
             httpConnection.setRequestProperty("Content-Type",
-                    "application/json");
+                    "application/json; charset = UTF-8");
             httpConnection.connect();
 
-            bufferedReader = new BufferedReader(new InputStreamReader(
-                    httpConnection.getInputStream()));
+            bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream()));
 
             String line=bufferedReader.readLine();
             while (line != null){
-                response.append(line).append("},");
+                response.append(line).append("\n");
                 line=bufferedReader.readLine();
             }
-
+            bufferedReader.close();
             Log.d(TAG2,
                     "GET response code: "
                             + String.valueOf(httpConnection
@@ -68,24 +65,33 @@ public class GetDataTask extends AsyncTask<String, Void, String> {
 
             }
         }
-
         return response.toString();
     }
 
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected List<Post> doInBackground(String... strings) {
         String url = strings[0];
         Log.d(TAG,"Doing task in background for url " +url);
 
-        return downloadRestData(url);
+        String postJson = downloadRestData(url);
+
+        JsonParser jsonParser = new JsonParser();
+        return jsonParser.parsePostData(postJson);
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        jsonResult += result;
+    protected void onPostExecute(List<Post> posts) {
+        postList = posts;
         Log.d(TAG,"Just got results");
-        Log.d(TAG, jsonResult);
+
+        for(Post post : postList){
+            Log.i(TAG, post.toString());
+        }
+    }
+
+    public List<Post> getPostList() {
+        return postList;
     }
 
     public static String appAuthentication() {
@@ -145,4 +151,6 @@ public class GetDataTask extends AsyncTask<String, Void, String> {
         }
         return response.toString();
     }
+
+
 }

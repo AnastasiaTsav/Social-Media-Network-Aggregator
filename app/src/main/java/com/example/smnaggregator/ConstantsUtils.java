@@ -1,5 +1,7 @@
 package com.example.smnaggregator;
 
+import java.nio.charset.Charset;
+
 public class ConstantsUtils {
 
     public static final String URL_ROOT_TWITTER_API = "https://api.twitter.com";
@@ -12,5 +14,6 @@ public class ConstantsUtils {
     public static final String CONSUMER_KEY = "zWKtvtcgKHZAiDUEtNaPDp0jf";
     public static final String CONSUMER_SECRET = "7x0dzyIVRcUUQSqDZx8wI84ZYrSM0ptXJL0h5wvos9GhD5aNoI";
 
+    public static final Charset UTF8  = Charset.forName("UTF-8");
 
 }

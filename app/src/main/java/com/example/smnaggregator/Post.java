@@ -50,7 +50,7 @@ public class Post {
     public String toString() {
         return "Post{" +
                 "name=" + name +
-                ",  Url=" + url +
+                ",  Url=" + url  + '\'' +
                 ", Promoted Content=" + promotedContent + '\'' +
                 ", Query=" + query + '\'' +
                 ", Tweet Volume="+ tweetVolume + '\''+
