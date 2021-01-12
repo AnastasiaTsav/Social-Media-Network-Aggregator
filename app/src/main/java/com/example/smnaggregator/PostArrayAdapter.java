@@ -52,6 +52,7 @@ public class PostArrayAdapter extends ArrayAdapter<Post> {
         }
 
         Post currentPost = postList.get(position);
+        String q = currentPost.getQuery();
 
         viewHolder.name.setText(currentPost.getName()+"");
         viewHolder.url.setText(currentPost.getUrl()+"");

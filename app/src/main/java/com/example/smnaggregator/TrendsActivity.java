@@ -1,20 +1,30 @@
 package com.example.smnaggregator;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import static android.content.Intent.ACTION_VIEW;
+import static java.sql.DriverManager.println;
+
 public class TrendsActivity extends AppCompatActivity {
 
     private static final String TAG = "RestAPI";
     private static final String REMOTE_API ="https://api.twitter.com/1.1/trends/place.json?id=23424833";
+
     private Button findTrendsBtn;
 
     @Override
@@ -38,8 +48,26 @@ public class TrendsActivity extends AppCompatActivity {
                 postListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                       Post t= postArrayAdapter.getItem((int) id);
-                       t.getUrl();
+                        //ListView postview = (ListView) postListView.getSelectedView();
+                        TextView hello = (TextView) postListView.findViewById(R.id.hahshtagURL);
+                        //ListView p = (ListView) parent.getItemAtPosition(position);
+                        //TextView hello = p.findViewById(R.id.hahshtagURL);
+                        String hi = (String) hello.getText();
+                        System.out.println(hi);
+
+
+                       // Post hello = (Post) chosen.getItemAtPosition(position);
+                        //String q = hello.getUrl();
+
+
+                       //String tweetUrl ="https://api.twitter.com/1.1/search/tweets.json?"+ q;
+                        try {
+                            startActivity(new Intent(ACTION_VIEW, Uri.parse(hi)));
+                        } catch (ActivityNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+
 
 
                     }
