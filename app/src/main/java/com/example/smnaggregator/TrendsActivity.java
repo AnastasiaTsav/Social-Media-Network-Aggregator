@@ -2,6 +2,8 @@ package com.example.smnaggregator;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -19,31 +21,28 @@ public class TrendsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trends);
-        /*
-        findTrendsBtn=findViewById(R.id.findTrendsButton);
-        findTrendsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {*/
                 Log.d(TAG,"onCreate: Starting download of trending hashtags");
 
-                ListView postListView = findViewById(R.id.trendsListView);
+                ListView postListView = findViewById(R.id.listview);
 
                 PostArrayAdapter postArrayAdapter = new PostArrayAdapter(this,
                         R.layout.list_record,
                         new ArrayList<Post>(),
                         postListView);
 
-                GetDataTask getDataTaskObject = new GetDataTask();
+                GetDataTask getDataTaskObject = new GetDataTask(postArrayAdapter);
                 getDataTaskObject.execute(REMOTE_API);
 
                 Log.d(TAG, "FINISHED downloading of trending hashtags");
+
+                postListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                       Post t= postArrayAdapter.getItem((int) id);
+                       t.getUrl();
+
+
+                    }
+                });
             }
-        }/*)*/;
-
-
-
-
-
-
-  //  }
-//}
+        }

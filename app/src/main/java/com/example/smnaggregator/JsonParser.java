@@ -19,7 +19,9 @@ public class JsonParser {
     private static final String TWEET_VOLUME_LITERAL = "tweet_volume";
 
     public List<Post> parsePostData(String postJsonData) {
+
         List<Post> postList = new ArrayList<>();
+
 
         try {
 

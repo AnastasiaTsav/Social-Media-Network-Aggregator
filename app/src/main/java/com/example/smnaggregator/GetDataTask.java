@@ -3,6 +3,7 @@ package com.example.smnaggregator;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.ListView;
 
 import org.json.JSONObject;
 
@@ -19,6 +20,10 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
     public static final String TAG2 = "TwitterUtils";
 
     public List<Post> postList;
+    private PostArrayAdapter adapter;
+    public GetDataTask (PostArrayAdapter adapter){
+        this.adapter=adapter;
+    }
 
     public String downloadRestData(String remoteUrl) {
 
@@ -27,6 +32,7 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
         HttpURLConnection httpConnection = null;
         BufferedReader bufferedReader = null;
         StringBuilder response = new StringBuilder();
+
 
         try {
             URL url = new URL(remoteUrl);
@@ -88,6 +94,7 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
         for(Post post : postList){
             Log.i(TAG, post.toString());
         }
+        adapter.setPostList(postList);
     }
 
     public List<Post> getPostList() {
