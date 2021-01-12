@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SMNAggregator">
-        <activity android:name=".ChosenTweetActivity"></activity>
+        <activity android:name=".MakePostActivity"></activity>
+        <activity android:name=".ChosenTweetActivity" />
         <activity android:name=".TrendsActivity" />
         <activity android:name=".HashtagActivity" />
         <activity android:name=".Login_Activity">

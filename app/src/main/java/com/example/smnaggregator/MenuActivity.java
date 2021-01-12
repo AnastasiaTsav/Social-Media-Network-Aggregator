@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +19,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button hashtagButton;
     private Button postButton;
     private Button storyButton;
-
+    private SearchView searchButton;
     private FirebaseAuth mAuth;
 
 
@@ -32,9 +33,19 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), HashtagActivity.class));
-                Log.d(TAG, "Button presses successfully");
+                Log.d(TAG, "HashTag button presses successfully");
             }
         });
+
+        postButton = findViewById(R.id.postButton);
+        postButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MakePostActivity.class));
+                Log.d(TAG, "Post button presses successfully");
+            }
+        });
+
 
     }
 
