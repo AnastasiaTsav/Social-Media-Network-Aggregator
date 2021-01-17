@@ -3,8 +3,11 @@ package com.example.smnaggregator;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.security.keystore.StrongBoxUnavailableException;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +19,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
-public class MakePostActivity extends AppCompatActivity {
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
+
+public class MakePostActivity extends FragmentActivity {
 
     private EditText contentTxt;
     private ImageButton addImageBtn;
@@ -26,6 +39,9 @@ public class MakePostActivity extends AppCompatActivity {
     private Switch fbSwitchBtn;
     private Switch instSwitchBtn;
     private Switch twitterSwitchBtn;
+
+    private CallbackManager fbManager;
+    private ShareDialog shareDialog = new ShareDialog(this);
 
     private Button shareBtn;
 
@@ -45,6 +61,7 @@ public class MakePostActivity extends AppCompatActivity {
         instSwitchBtn = findViewById(R.id.instagramPostSwitch);
         twitterSwitchBtn = findViewById(R.id.twitterPostSwitch);
         shareBtn = findViewById(R.id.publishPostButton);
+
 
         //handle addImageBtn button click//
         addImageBtn.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +88,54 @@ public class MakePostActivity extends AppCompatActivity {
                 }
             }
         });
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FacebookSdk.fullyInitialize();
+
+                        if (fbSwitchBtn.isChecked()){
+                            fbManager= CallbackManager.Factory.create();
 
 
-    }
+                            BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
+                            Bitmap bitmap = bitmapDrawable.getBitmap();
+
+
+
+                            if (shareDialog.canShow(SharePhotoContent.class)){
+                                SharePhoto sharePhoto = new  SharePhoto.Builder().setBitmap(bitmap).build();
+                                SharePhotoContent sharePhotoContent = new SharePhotoContent.Builder().addPhoto(sharePhoto).build();
+                                shareDialog.show(sharePhotoContent);
+
+                            }
+
+                            shareDialog.registerCallback(fbManager,new FacebookCallback<Sharer.Result>(){
+
+                                @Override
+                                public void onSuccess(Sharer.Result result) {
+                                    Toast.makeText(MakePostActivity.this,"Share Successful",Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onCancel() {
+                                    Toast.makeText(MakePostActivity.this,"Share canceled",Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onError(FacebookException error) {
+                                    Toast.makeText(MakePostActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+                        }
+                    }
+                });
+
+            }
+
+
+
 
     private void pickImageFromGallery() {
         //intent to pick image
@@ -105,5 +167,8 @@ public class MakePostActivity extends AppCompatActivity {
             //set image to imageview
             imageView.setImageURI(data.getData());
         }
+
     }
+    //handle result of facebook callbackManager
+
 }

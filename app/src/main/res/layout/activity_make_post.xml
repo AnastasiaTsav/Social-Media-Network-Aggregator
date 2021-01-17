@@ -9,10 +9,8 @@
 
     <Switch
         android:id="@+id/instagramPostSwitch"
-        android:layout_width="126dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="116dp"
+        android:layout_height="88dp"
         android:button="@drawable/instagramicon"
         android:checked="false"
         android:contextClickable="false"
@@ -20,15 +18,14 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintStart_toEndOf="@+id/fbPostSwitch"
-        app:layout_constraintTop_toBottomOf="@+id/makePostTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fbPostSwitch"
         tools:visibility="visible" />
 
     <Switch
         android:id="@+id/fbPostSwitch"
         android:layout_width="116dp"
         android:layout_height="83dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:button="@drawable/facebookicon"
         android:checked="false"
@@ -45,21 +42,18 @@
         android:id="@+id/addImageButton"
         android:layout_width="68dp"
         android:layout_height="76dp"
-        android:layout_marginTop="388dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="32dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/makePostTxt"
+        app:layout_constraintTop_toTopOf="@+id/makePostTxt"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <EditText
         android:id="@+id/makePostTxt"
-        android:layout_width="324dp"
-        android:layout_height="180dp"
+        android:layout_width="285dp"
+        android:layout_height="136dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/header3"
         android:ems="10"
         android:gravity="start|top"
@@ -67,14 +61,12 @@
         android:inputType="textMultiLine"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoMakePost" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Switch
         android:id="@+id/twitterPostSwitch"
-        android:layout_width="125dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="116dp"
+        android:layout_height="88dp"
         android:button="@drawable/twittericon"
         android:checked="false"
         android:contextClickable="false"
@@ -82,42 +74,30 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintStart_toEndOf="@+id/instagramPostSwitch"
-        app:layout_constraintTop_toBottomOf="@+id/makePostTxt"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/infoMakePost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Publish Post Now!"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/instagramPostSwitch"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/publishPostButton"
         android:layout_width="142dp"
         android:layout_height="82dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="32dp"
         android:text="SHARE"
         app:icon="@android:drawable/ic_menu_share"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instagramPostSwitch" />
+        app:layout_constraintStart_toEndOf="@+id/instagramPostSwitch"
+        app:layout_constraintTop_toTopOf="@+id/instagramPostSwitch" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="287dp"
-        android:layout_height="217dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="255dp"
+        android:layout_height="154dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoMakePost"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
