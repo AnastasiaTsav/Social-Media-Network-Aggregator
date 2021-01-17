@@ -3,11 +3,14 @@ package com.example.smnaggregator;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.security.keystore.StrongBoxUnavailableException;
+
+import android.os.Parcelable;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +18,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
+import android.app.Activity;
+import android.net.Uri;
+import android.text.TextUtils;
+
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +37,14 @@ import com.facebook.share.Sharer;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
+import com.google.firebase.auth.TwitterAuthProvider;
+import com.squareup.picasso.Picasso;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.tweetcomposer.TweetComposer;
+
+import static com.facebook.appevents.AppEventsLogger.getUserData;
+import static com.twitter.sdk.android.core.internal.network.UrlUtils.urlEncode;
 
 public class MakePostActivity extends FragmentActivity {
 
@@ -94,6 +110,7 @@ public class MakePostActivity extends FragmentActivity {
                 FacebookSdk.fullyInitialize();
 
                         if (fbSwitchBtn.isChecked()){
+                            if (imageView!=null){
                             fbManager= CallbackManager.Factory.create();
 
 
@@ -126,6 +143,20 @@ public class MakePostActivity extends FragmentActivity {
                                     Toast.makeText(MakePostActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
                                 }
                             });
+
+                        }
+                        else{
+                            //implicity intent -->se stelnei sthn efarmogi me etoimo to text
+
+                            }
+                        }
+
+                        if(twitterSwitchBtn.isChecked()){
+
+                            TweetComposer.Builder builder = new TweetComposer.Builder(MakePostActivity.this).text(contentTxt.getText().toString());
+                            builder.show();
+                            getUserData();
+
 
 
                         }
@@ -169,6 +200,6 @@ public class MakePostActivity extends FragmentActivity {
         }
 
     }
-    //handle result of facebook callbackManager
+
 
 }
