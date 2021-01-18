@@ -27,6 +27,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.net.URI;
 import java.util.List;
 
@@ -71,6 +72,7 @@ public class MakePostActivity extends FragmentActivity {
     private ShareDialog shareDialog = new ShareDialog(this);
 
     private Button shareBtn;
+
     private Uri imageUri;
 
     private static final int IMAGE_PICK_CODE = 1000;
@@ -116,6 +118,7 @@ public class MakePostActivity extends FragmentActivity {
                 }
             }
         });
+
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,9 +131,9 @@ public class MakePostActivity extends FragmentActivity {
                         BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
                         Bitmap bitmap = bitmapDrawable.getBitmap();
 
-
-
                         if (shareDialog.canShow(SharePhotoContent.class)){
+                            //anoigoyme parathyro me eikona alla to keimeno
+                            //tha grafei kateytheian sto fb//
                             SharePhoto sharePhoto = new  SharePhoto.Builder().setBitmap(bitmap).build();
                             SharePhotoContent sharePhotoContent = new SharePhotoContent.Builder().addPhoto(sharePhoto).build();
                             shareDialog.show(sharePhotoContent);
@@ -156,14 +159,19 @@ public class MakePostActivity extends FragmentActivity {
                         });
 
                     } else {
-                        //implicity intent -->se stelnei sthn efarmogi me etoimo to text
+                        //to setContentDescription einai deprecated opote de mporoyme
+                        //na anebasoyme keimeno apo tin efarmogi para mono na anoiksoyme
+                        //parathyro gia na grapsoyme kateytheian sto fb
+                        //anoigoyme parathyro xwris eikona
+                        ShareLinkContent content = new ShareLinkContent.Builder()
+                                .setContentUrl(Uri.parse(""))
+                                .build();
+                        shareDialog.show(content);
 
                     }
                 }
 
                 if (twitterSwitchBtn.isChecked()) {
-
-
                     if (imageView.getDrawable() != null) {
                         TweetComposer.Builder builder = new TweetComposer.Builder(MakePostActivity.this)
                                 .text(contentTxt.getText().toString())
@@ -176,14 +184,46 @@ public class MakePostActivity extends FragmentActivity {
                         builder.show();
                         getUserData();
                     }
-
-
-
-
                 }
+
+                /*
+                if(instSwitchBtn.isChecked()){
+                    Intent intent = getPackageManager().getLaunchIntentForPackage("com.instagram.android");
+                    if(intent != null){
+                        Intent shareIntent = new Intent();
+                        shareIntent.setAction(Intent.ACTION_SEND);
+                        shareIntent.setPackage("com.instagram.android");
+                        try{
+                            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), imageUri.getPath(), "I am Happy", "Share happy !")));
+                        }catch (FileNotFoundException e){
+                            //TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        shareIntent.setType("image/*");
+                        startActivity(shareIntent);
+                    }else
+                    {
+                        //bring user to the market to download the instagram app
+                        intent = new Intent(Intent.ACTION_VIEW);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setData(Uri.parse("market://details?id="+"com.instagram.android"));
+                        startActivity(intent);
+                    }
+                }*/
+
+
+
+
+
+
+
+
+
+
             }
 
         });
+
 
     }
 
@@ -235,7 +275,7 @@ public class MakePostActivity extends FragmentActivity {
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             //set image to imageview
             Uri selectedImage = data.getData();
-            imageUri=selectedImage;
+            imageUri = selectedImage;
             imageView.setImageURI(data.getData());
         }
 

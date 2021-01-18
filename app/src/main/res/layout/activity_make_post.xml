@@ -44,6 +44,7 @@
         android:layout_height="76dp"
         android:layout_marginTop="32dp"
         android:scaleType="fitCenter"
+
         app:layout_constraintStart_toEndOf="@+id/makePostTxt"
         app:layout_constraintTop_toTopOf="@+id/makePostTxt"
         app:srcCompat="@android:drawable/ic_menu_camera" />
