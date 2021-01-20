@@ -27,6 +27,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URI;
 import java.util.List;
@@ -59,6 +60,8 @@ import static com.facebook.appevents.AppEventsLogger.getUserData;
 import static com.twitter.sdk.android.core.internal.network.UrlUtils.urlEncode;
 
 public class MakePostActivity extends FragmentActivity {
+
+    private static final String TAG = "MakePostActivity";
 
     private EditText contentTxt;
     private ImageButton addImageBtn;
@@ -186,45 +189,35 @@ public class MakePostActivity extends FragmentActivity {
                     }
                 }
 
-                /*
                 if(instSwitchBtn.isChecked()){
-                    Intent intent = getPackageManager().getLaunchIntentForPackage("com.instagram.android");
-                    if(intent != null){
-                        Intent shareIntent = new Intent();
-                        shareIntent.setAction(Intent.ACTION_SEND);
-                        shareIntent.setPackage("com.instagram.android");
-                        try{
-                            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), imageUri.getPath(), "I am Happy", "Share happy !")));
-                        }catch (FileNotFoundException e){
-                            //TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                        shareIntent.setType("image/*");
-                        startActivity(shareIntent);
-                    }else
-                    {
-                        //bring user to the market to download the instagram app
-                        intent = new Intent(Intent.ACTION_VIEW);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.setData(Uri.parse("market://details?id="+"com.instagram.android"));
-                        startActivity(intent);
+                    if(imageView.getDrawable() != null ){
+                        createInstagramIntent();
                     }
-                }*/
-
-
-
-
-
-
-
-
-
-
+                    else{
+                        Toast.makeText(MakePostActivity.this, "Instagram needs photo!!", Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "Instagram feed needs photo not text only");
+                    }
+                }
             }
 
         });
 
 
+    }
+
+    private void createInstagramIntent(){
+        //create the new intent using the'send action
+        Intent instagram = new Intent(Intent.ACTION_SEND);
+
+        //set the MIME type
+        instagram.setType("image/*");
+
+        //Add the URI to the Intent
+        instagram.putExtra(Intent.EXTRA_STREAM, imageUri);
+        instagram.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        //Broadcast the Intent
+        startActivity(Intent.createChooser(instagram, "Share to"));
     }
 
 
