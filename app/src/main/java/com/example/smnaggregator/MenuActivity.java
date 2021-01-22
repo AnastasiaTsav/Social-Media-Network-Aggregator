@@ -46,6 +46,15 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        storyButton = findViewById(R.id.storyButton);
+        storyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MakeStoryActivity.class));
+                Log.d(TAG,"Story button presses successfully");
+            }
+        });
+
 
     }
 

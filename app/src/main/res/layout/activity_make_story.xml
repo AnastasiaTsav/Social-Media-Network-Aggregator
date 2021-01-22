@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sign"
+    tools:context=".MakeStoryActivity">
+
+    <Button
+        android:id="@+id/shareStoryButton"
+        android:layout_width="142dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:text="make story"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_menu_share"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instaStoryButton" />
+
+    <Switch
+        android:id="@+id/twitterStoryButton"
+        android:layout_width="116dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:button="@drawable/twittericon"
+        android:checked="false"
+        android:contextClickable="false"
+        android:cursorVisible="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/instaStoryButton"
+        app:layout_constraintTop_toTopOf="@+id/instaStoryButton"
+        tools:visibility="visible" />
+
+    <Switch
+        android:id="@+id/instaStoryButton"
+        android:layout_width="116dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="20dp"
+        android:button="@drawable/instagramicon"
+        android:checked="false"
+        android:contextClickable="false"
+        android:cursorVisible="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toEndOf="@+id/fbStoryButton"
+        app:layout_constraintTop_toTopOf="@+id/fbStoryButton"
+        tools:visibility="visible" />
+
+    <Switch
+        android:id="@+id/fbStoryButton"
+        android:layout_width="116dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:button="@drawable/facebookicon"
+        android:checked="false"
+        android:contextClickable="false"
+        android:cursorVisible="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/addStoryImageButton"
+        android:layout_width="68dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/storyImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/storyImageView"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <ImageView
+        android:id="@+id/storyImageView"
+        android:layout_width="255dp"
+        android:layout_height="154dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storyInfoText"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <TextView
+        android:id="@+id/storyInfoText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="cursive"
+        android:text="Select an Image/Video to make Story"
+        android:textColor="#591212"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="208dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/storyImageView"
+        app:layout_constraintTop_toBottomOf="@+id/storyImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
