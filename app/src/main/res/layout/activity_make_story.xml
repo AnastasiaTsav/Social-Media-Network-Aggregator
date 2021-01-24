@@ -11,38 +11,21 @@
         android:id="@+id/shareStoryButton"
         android:layout_width="142dp"
         android:layout_height="82dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="casual"
         android:text="make story"
         android:textStyle="bold"
         app:icon="@android:drawable/ic_menu_share"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instaStoryButton" />
-
-    <Switch
-        android:id="@+id/twitterStoryButton"
-        android:layout_width="116dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:button="@drawable/twittericon"
-        android:checked="false"
-        android:contextClickable="false"
-        android:cursorVisible="false"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/instaStoryButton"
-        app:layout_constraintTop_toTopOf="@+id/instaStoryButton"
-        tools:visibility="visible" />
 
     <Switch
         android:id="@+id/instaStoryButton"
         android:layout_width="116dp"
         android:layout_height="88dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="88dp"
         android:button="@drawable/instagramicon"
         android:checked="false"
         android:contextClickable="false"
@@ -58,7 +41,7 @@
         android:id="@+id/fbStoryButton"
         android:layout_width="116dp"
         android:layout_height="80dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:button="@drawable/facebookicon"
         android:checked="false"
@@ -68,7 +51,7 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        app:layout_constraintTop_toBottomOf="@+id/storyImageView"
         tools:visibility="visible" />
 
     <ImageButton
@@ -88,10 +71,11 @@
     <ImageView
         android:id="@+id/storyImageView"
         android:layout_width="255dp"
-        android:layout_height="154dp"
+        android:layout_height="340dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/storyInfoText"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
@@ -111,15 +95,5 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="208dp"
-        android:layout_height="188dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/storyImageView"
-        app:layout_constraintTop_toBottomOf="@+id/storyImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

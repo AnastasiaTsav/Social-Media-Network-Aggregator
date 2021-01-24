@@ -13,13 +13,16 @@
     <application
         android:allowBackup="true"
         android:grantUriPermissions="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logoicon2"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SMNAggregator"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="false">
+
         <activity android:name=".MakeStoryActivity"></activity>
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

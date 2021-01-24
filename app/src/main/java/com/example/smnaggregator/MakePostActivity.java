@@ -39,6 +39,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.bumptech.glide.Glide;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -269,7 +270,10 @@ public class MakePostActivity extends FragmentActivity {
             //set image to imageview
             Uri selectedImage = data.getData();
             imageUri = selectedImage;
-            imageView.setImageURI(data.getData());
+         //   imageView.setImageURI(data.getData());
+            // solution with picasso library makes fatal exception error because large bitmap
+            //so we use the Gridle library which supports and larger files
+            Glide.with(this).load(selectedImage).into(imageView);
         }
 
     }

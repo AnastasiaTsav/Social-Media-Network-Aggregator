@@ -1,13 +1,6 @@
 package com.example.smnaggregator;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -22,13 +15,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.bumptech.glide.Glide;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.share.Share;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.ShareStoryContent;
@@ -38,12 +35,12 @@ public class MakeStoryActivity extends AppCompatActivity {
 
     private static final String TAG = "MakeStoryActivity";
     private ImageView storyImage;
-    private VideoView storyVideo;
     private ImageButton addImageStoryBtn;
     private Switch fbStory;
     private Switch instagramStory;
-    private Switch twitterStory;
     private Button shareStory;
+
+    private Uri imageUri;
 
     private CallbackManager fbManager;
     private ShareDialog shareDialog = new ShareDialog(this);
@@ -60,11 +57,9 @@ public class MakeStoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_make_story);
 
         storyImage = findViewById(R.id.storyImageView);
-        storyVideo = findViewById(R.id.videoView);
         addImageStoryBtn = findViewById(R.id.addStoryImageButton);
         fbStory = findViewById(R.id.fbStoryButton);
         instagramStory = findViewById(R.id.instaStoryButton);
-        twitterStory = findViewById(R.id.twitterStoryButton);
         shareStory = findViewById(R.id.shareStoryButton);
 
         //handle addImageStoryBtn//
@@ -133,15 +128,34 @@ public class MakeStoryActivity extends AppCompatActivity {
 
                     }
                 }
+                if(instagramStory.isChecked()){
+                    if(storyImage.getDrawable() != null){
+                        createStoryInstagramIntent();
+                    }
+                    else{
+                        Toast.makeText(MakeStoryActivity.this, "Instagram needs a photo  or a video", Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "Instagram story needs photo");
+                    }
+                }
             }
         });
 
 
-
-
-
     }
 
+    private void createStoryInstagramIntent() {
+        //Define background asset URI
+        Uri backgroundAssetUri = Uri.parse(imageUri.toString());
+        //Instatiate implicit intent with ADD_TO_STORY action and background asset
+        Intent storyIntent = new Intent("com.instagram.share.ADD_TO_STORY");
+        storyIntent.setDataAndType(backgroundAssetUri, "image/*");
+        storyIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        storyIntent.setPackage("com.instagram.android");
+        //Instantiate activity and verify it will resolve implicit intent
+        if(this.getPackageManager().resolveActivity(storyIntent, 0) != null){
+            this.startActivityForResult(storyIntent, 0);
+        }
+    }
 
 
     private void pickImageFromGallery(){
@@ -158,7 +172,11 @@ public class MakeStoryActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             //set image to imageview
             Uri selectedImage = data.getData();
-            storyImage.setImageURI(selectedImage);
+            imageUri = selectedImage;
+           // solution with picasso library makes fatal exception error because large bitmap
+            //so we use the Gridle library which supports and larger files
+            // storyImage.setImageURI(selectedImage); //
+            Glide.with(this).load(selectedImage).into(storyImage);
         }
     }
 
@@ -206,21 +224,7 @@ public class MakeStoryActivity extends AppCompatActivity {
         }
     }
 
-    //file
-    protected void requestPermission()
-    {
 
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE))
-        {
-            Toast.makeText(MakeStoryActivity.this, "Read External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
-        } else
-        {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            {
-                requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
-            }
-        }
-    }
 
 
 }
