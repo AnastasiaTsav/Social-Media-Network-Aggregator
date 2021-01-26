@@ -175,8 +175,8 @@ public class MakeStoryActivity extends AppCompatActivity {
             imageUri = selectedImage;
            // solution with picasso library makes fatal exception error because large bitmap
             //so we use the Gridle library which supports and larger files
-            // storyImage.setImageURI(selectedImage); //
-            Glide.with(this).load(selectedImage).into(storyImage);
+            //storyImage.setImageURI(selectedImage); //
+           Glide.with(this).load(selectedImage).into(storyImage);
         }
     }
 
