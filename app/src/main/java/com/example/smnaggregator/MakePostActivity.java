@@ -199,8 +199,8 @@ public class MakePostActivity extends FragmentActivity {
                         Log.d(TAG, "Instagram feed needs photo not text only");
                     }
                 }
-            }
 
+            }
         });
 
 

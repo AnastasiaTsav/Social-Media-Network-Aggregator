@@ -38,6 +38,7 @@ public class MakeStoryActivity extends AppCompatActivity {
     private ImageButton addImageStoryBtn;
     private Switch fbStory;
     private Switch instagramStory;
+    private Switch twitterStory;
     private Button shareStory;
 
     private Uri imageUri;
@@ -60,7 +61,9 @@ public class MakeStoryActivity extends AppCompatActivity {
         addImageStoryBtn = findViewById(R.id.addStoryImageButton);
         fbStory = findViewById(R.id.fbStoryButton);
         instagramStory = findViewById(R.id.instaStoryButton);
+        twitterStory = findViewById(R.id.twitterStoryButton);
         shareStory = findViewById(R.id.shareStoryButton);
+
 
         //handle addImageStoryBtn//
         addImageStoryBtn.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +139,17 @@ public class MakeStoryActivity extends AppCompatActivity {
                         Toast.makeText(MakeStoryActivity.this, "Instagram needs a photo  or a video", Toast.LENGTH_LONG).show();
                         Log.d(TAG, "Instagram story needs photo");
                     }
+                }
+                if(twitterStory.isChecked()){
+                    //create the new Intent using the send's action
+                    Intent twitterIntent = new Intent(Intent.ACTION_SEND);
+                    //set the MIME type
+                    twitterIntent.setType("image/*");
+                    //Add the URI to intent
+                    twitterIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+                    twitterIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                    startActivity(Intent.createChooser(twitterIntent, "share to fleet"));
                 }
             }
         });
