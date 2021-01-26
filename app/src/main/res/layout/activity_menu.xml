@@ -76,13 +76,14 @@
         app:layout_constraintTop_toBottomOf="@+id/postButton" />
 
     <SearchView
-        android:id="@+id/searchButton"
+        android:id="@+id/searchBar"
         android:layout_width="292dp"
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
         android:background="#FDFFFB"
         android:foregroundTint="#FFFFFF"
         android:inputType="text"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"

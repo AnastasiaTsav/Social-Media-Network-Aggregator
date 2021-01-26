@@ -10,10 +10,6 @@ public class ConstantsUtils {
 
     public static final String URL_GREECE_TRENDING ="https://api.twitter.com/1.1/trends/place.json?id=23424833";
 
-
-    public static final String CONSUMER_KEY = "zWKtvtcgKHZAiDUEtNaPDp0jf";
-    public static final String CONSUMER_SECRET = "7x0dzyIVRcUUQSqDZx8wI84ZYrSM0ptXJL0h5wvos9GhD5aNoI";
-
     public static final Charset UTF8  = Charset.forName("UTF-8");
 
 }

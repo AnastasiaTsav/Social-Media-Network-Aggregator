@@ -14,6 +14,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import static com.example.smnaggregator.BuildConfig.twitterkey;
+import static com.example.smnaggregator.BuildConfig.twittersecret;
+
 public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
 
     public static final String TAG = "GetDataTask";
@@ -115,8 +118,8 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
             httpConnection.setDoOutput(true);
             httpConnection.setDoInput(true);
 
-            String accessCredential = ConstantsUtils.CONSUMER_KEY + ":"
-                    + ConstantsUtils.CONSUMER_SECRET;
+            String accessCredential = twitterkey + ":"
+                    + twittersecret;
             String authorization = "Basic "
                     + Base64.encodeToString(accessCredential.getBytes(),
                     Base64.NO_WRAP);

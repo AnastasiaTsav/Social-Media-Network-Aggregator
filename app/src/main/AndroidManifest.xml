@@ -29,7 +29,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".MakePostActivity" />
-        <activity android:name=".ChosenTweetActivity" />
+        <activity android:name=".SearchHashtagActivity" />
         <activity android:name=".TrendsActivity" />
         <activity android:name=".HashtagActivity" />
         <activity android:name=".Login_Activity">

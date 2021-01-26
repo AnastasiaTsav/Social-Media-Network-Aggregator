@@ -23,6 +23,10 @@ android {
             buildConfigField "String", "twittersecret", twitter_consumer_secret
             resValue 'string', 'twitterkey', twitter_consumer_key
             resValue 'string', 'twiitersecret', twitter_consumer_secret
+            buildConfigField "String", "twitterAccessToken", twitter_access_token
+            buildConfigField "String", "twitterAccessTokenSecret", twitter_access_secret
+            resValue 'string', 'twitterAccessToken', twitter_access_token
+            resValue 'string', 'twitterAccessTokenSecret', twitter_access_secret
         }
         release {
             minifyEnabled false
@@ -77,6 +81,8 @@ dependencies {
     //gridle arlternative libraby like picasso
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    //twittet4j library
+    implementation 'org.twitter4j:twitter4j-core:4.0.7'
 
 
 }

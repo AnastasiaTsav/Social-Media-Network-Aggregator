@@ -19,7 +19,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button hashtagButton;
     private Button postButton;
     private Button storyButton;
-    private SearchView searchButton;
+    private SearchView searchBar;
     private FirebaseAuth mAuth;
 
 
@@ -54,6 +54,26 @@ public class MenuActivity extends AppCompatActivity {
                 Log.d(TAG,"Story button presses successfully");
             }
         });
+
+        searchBar = findViewById(R.id.searchBar);
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //send the query in the search activity
+               Intent searchIntent = new Intent(MenuActivity.this,SearchHashtagActivity.class);
+               searchIntent.putExtra("hashtag", query);
+               startActivity(searchIntent);
+
+               return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
 
 
     }
