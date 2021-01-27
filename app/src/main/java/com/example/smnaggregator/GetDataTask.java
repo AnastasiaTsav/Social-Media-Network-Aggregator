@@ -3,10 +3,7 @@ package com.example.smnaggregator;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.ListView;
-
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -134,8 +131,6 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
             outputStream.write(param.getBytes());
             outputStream.flush();
             outputStream.close();
-            // int statusCode = httpConnection.getResponseCode();
-            // String reason =httpConnection.getResponseMessage();
 
             bufferedReader = new BufferedReader(new InputStreamReader(
                     httpConnection.getInputStream()));
@@ -161,6 +156,5 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
         }
         return response.toString();
     }
-
 
 }

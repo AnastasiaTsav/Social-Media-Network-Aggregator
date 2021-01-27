@@ -22,7 +22,6 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private static final String TAG = "CreateAccountActivity";
 
-
     private EditText createEmail;
     private EditText createPassword;
     private EditText confPassword;
@@ -96,30 +95,6 @@ public class CreateAccountActivity extends AppCompatActivity {
             }
         });
 
-        /*// Initialize Facebook Login button
-        mCallbackManager = CallbackManager.Factory.create();
-        LoginButton fbLoginBtn = (LoginButton) findViewById(R.id.fb_login_button);
-        fbLoginBtn.setReadPermissions("email", "public_profile");
-        fbLoginBtn.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-
-            }
-        }); */
-
     }
 
     @Override
@@ -141,41 +116,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         finish();
 
     }
-
-
-    /*
-     @Override
-     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Pass the activity result back to the Facebook SDK
-         mCallbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(CreateAccountActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }*/
-
-
-
 }
 
 

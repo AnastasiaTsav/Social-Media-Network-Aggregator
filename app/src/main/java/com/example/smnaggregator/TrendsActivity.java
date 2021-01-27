@@ -7,11 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
-
 import static android.content.Intent.ACTION_VIEW;
 
 public class TrendsActivity extends AppCompatActivity {
@@ -53,9 +50,6 @@ public class TrendsActivity extends AppCompatActivity {
                         e.printStackTrace();
                         Log.e(TAG,"Connection with twitter App failed");
                     }
-
-
-
 
                 });
             }

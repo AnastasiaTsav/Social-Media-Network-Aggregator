@@ -7,9 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuActivity extends AppCompatActivity {
@@ -21,7 +19,6 @@ public class MenuActivity extends AppCompatActivity {
     private Button storyButton;
     private SearchView searchBar;
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +70,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
-
 
     public void logout(View view){
         FirebaseAuth.getInstance().signOut(); //User Disconnection

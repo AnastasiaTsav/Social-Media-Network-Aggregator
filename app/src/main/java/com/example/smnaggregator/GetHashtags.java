@@ -3,18 +3,12 @@ package com.example.smnaggregator;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.smnaggregator.BuildConfig.twitterkey;
@@ -139,8 +133,6 @@ public class GetHashtags extends AsyncTask<String, Void, List<Hashtag>> {
             outputStream.write(param.getBytes());
             outputStream.flush();
             outputStream.close();
-            // int statusCode = httpConnection.getResponseCode();
-            // String reason =httpConnection.getResponseMessage();
 
             bufferedReader = new BufferedReader(new InputStreamReader(
                     httpConnection.getInputStream()));

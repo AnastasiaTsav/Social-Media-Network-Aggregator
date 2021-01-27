@@ -5,6 +5,15 @@ public class Hashtag {
     private String id;
     private String id_str;
     private String text;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getCreatedAt() {
         return createdAt;
@@ -46,6 +55,7 @@ public class Hashtag {
                 ", Id=" + id +
                 ", id_str='" + id_str + '\'' +
                 ", text='" + text + '\'' +
+                "url"+ url+
                 '}';
     }
 

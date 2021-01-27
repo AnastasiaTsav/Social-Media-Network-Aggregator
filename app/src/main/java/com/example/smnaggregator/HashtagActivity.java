@@ -6,9 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.TwitterAuthProvider;
@@ -30,13 +28,10 @@ public class HashtagActivity extends AppCompatActivity implements Serializable {
 
     private static final String twitterkey = BuildConfig.twitterkey;
     private static final String twittersecret = BuildConfig.twittersecret;
-
     private TwitterLoginButton twitterLoginButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +82,6 @@ public class HashtagActivity extends AppCompatActivity implements Serializable {
         });
 
     }
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -115,8 +108,6 @@ public class HashtagActivity extends AppCompatActivity implements Serializable {
         mAuth.removeAuthStateListener(mAuthListener);
     }
 
-
-
     private void UpdateTwitterButton(){
         if (TwitterCore.getInstance().getSessionManager().getActiveSession() == null){
             twitterLoginButton.setVisibility(View.VISIBLE);
@@ -129,7 +120,6 @@ public class HashtagActivity extends AppCompatActivity implements Serializable {
             startActivity(trendingActivity);
         }
     }
-
 
     private void signInToFirebaseWithTwitterSession(TwitterSession session){
         AuthCredential credential = TwitterAuthProvider.getCredential(session.getAuthToken().token,

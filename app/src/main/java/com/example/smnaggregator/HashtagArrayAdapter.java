@@ -1,6 +1,5 @@
 package com.example.smnaggregator;
 import android.content.Context;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import java.util.List;
 
 public class HashtagArrayAdapter extends ArrayAdapter<Hashtag> {
@@ -33,7 +30,6 @@ public class HashtagArrayAdapter extends ArrayAdapter<Hashtag> {
         hashtagListView= listView;
     }
 
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -53,9 +49,8 @@ public class HashtagArrayAdapter extends ArrayAdapter<Hashtag> {
 
         Hashtag currentTweet = hashtagList.get(position);
 
-
-
         viewHolder.text.setText(currentTweet.getText()+"");
+        viewHolder.url.setText(currentTweet.getUrl()+"");
 
         return convertView;
     }
@@ -63,15 +58,16 @@ public class HashtagArrayAdapter extends ArrayAdapter<Hashtag> {
     private class ViewHolder{
 
         final TextView text;
+        final TextView url;
 
 
         ViewHolder(View view){
 
             text = view.findViewById(R.id.tweetText);
+            url = view.findViewById(R.id.tweetUrl);
 
         }
     }
-
 
     @Override
     public int getCount() {

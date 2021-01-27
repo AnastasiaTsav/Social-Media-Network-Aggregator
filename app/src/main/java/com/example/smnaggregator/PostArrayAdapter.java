@@ -8,10 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import java.util.List;
 
 public class PostArrayAdapter extends ArrayAdapter<Post> {
@@ -71,7 +69,6 @@ public class PostArrayAdapter extends ArrayAdapter<Post> {
 
         }
     }
-
 
     @Override
     public int getCount() {

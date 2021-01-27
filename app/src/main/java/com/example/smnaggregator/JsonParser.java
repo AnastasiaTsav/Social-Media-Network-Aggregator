@@ -1,17 +1,14 @@
 package com.example.smnaggregator;
 
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class JsonParser {
     public static final String TAG = "JsonParser";
-
     private static final String NAME_LITERAL = "name";
     private static final String URL_LITERAL = "url";
     private static final String PROMOTED_CONTENT_LITERAL = "promoted_content";
@@ -21,7 +18,6 @@ public class JsonParser {
     public List<Post> parsePostData(String postJsonData) {
 
         List<Post> postList = new ArrayList<>();
-
 
         try {
 
@@ -48,8 +44,6 @@ public class JsonParser {
                 post.setTweetVolume(tweetVolume);
 
                 postList.add(post);
-
-
 
             }
 

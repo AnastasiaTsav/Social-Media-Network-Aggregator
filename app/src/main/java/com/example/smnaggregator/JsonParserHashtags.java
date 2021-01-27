@@ -1,55 +1,42 @@
 package com.example.smnaggregator;
 
 import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class JsonParserHashtags {
     public static final String TAG = "JsonParserHashtags";
-
-    private static final String CREATED_AT = "created_at";
-    private static final String ID = "id";
-    private static final String ID_STR = "id_str";
     private static final String TEXT = "text";
-    private static final String TRUNCATED = "truncated";
     private static final String ENTITIES = "entities";
 
     public List<Hashtag> parseHashtagData(String hashtagJsonData) {
 
         List<Hashtag> hashtagList = new ArrayList<>();
-
+        String url = "1";
         try {
             JSONObject root = new JSONObject(hashtagJsonData);
             JSONArray jsonHashtagArray = root.getJSONArray("statuses");
 
-
             for (int i = 0; i < jsonHashtagArray.length(); i++) {
                 JSONObject tweetsObject = jsonHashtagArray.getJSONObject(i);
 
-                String createdAt = tweetsObject.getString(CREATED_AT);
-                String id = tweetsObject.getString(ID);
-                String id_str = tweetsObject.getString(ID_STR);
                 String text = tweetsObject.getString(TEXT);
-                String truncated = tweetsObject.getString(TRUNCATED);
-                String entities = tweetsObject.getString(ENTITIES);
 
+                String entities = tweetsObject.getString(ENTITIES);
+                JSONObject entity = new JSONObject(entities);
+                JSONArray urlsArray = entity.getJSONArray("urls");
+                for (int j=0; j < urlsArray.length();j++){
+                    JSONObject urlObj = urlsArray.getJSONObject(j);
+                    url = urlObj.getString("expanded_url");
+                }
 
                 Hashtag hashtag = new Hashtag();
-                //hashtag.setCreatedAt(createdAt);
                 hashtag.setText(text);
-
+                hashtag.setUrl(url);
                 hashtagList.add(hashtag);
-
-
 
             }
 

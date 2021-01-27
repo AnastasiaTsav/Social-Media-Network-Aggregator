@@ -15,12 +15,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import com.bumptech.glide.Glide;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -148,6 +146,7 @@ public class MakeStoryActivity extends AppCompatActivity {
                     //Add the URI to intent
                     twitterIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
                     twitterIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    twitterIntent.setPackage("com.twitter.android");
 
                     startActivity(Intent.createChooser(twitterIntent, "share to fleet"));
                 }
@@ -237,8 +236,5 @@ public class MakeStoryActivity extends AppCompatActivity {
             return false;
         }
     }
-
-
-
 
 }

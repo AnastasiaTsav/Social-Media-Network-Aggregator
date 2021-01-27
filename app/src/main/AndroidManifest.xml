@@ -62,6 +62,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".CreateAccountActivity" />
 
         <provider
             android:name="com.facebook.FacebookContentProvider"

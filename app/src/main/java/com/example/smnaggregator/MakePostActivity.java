@@ -1,19 +1,13 @@
 package com.example.smnaggregator;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import android.os.Parcelable;
-import android.provider.MediaStore;
-import android.provider.MediaStore.Images.Media;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,43 +16,23 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.app.Activity;
-import android.net.Uri;
-import android.text.TextUtils;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URI;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
-
 import com.bumptech.glide.Glide;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.share.Sharer;
-import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
-import com.google.firebase.auth.TwitterAuthProvider;
-import com.squareup.picasso.Picasso;
-import com.twitter.sdk.android.core.TwitterApiClient;
-import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
-
-import static android.provider.MediaStore.*;
 import static com.facebook.appevents.AppEventsLogger.getUserData;
-import static com.twitter.sdk.android.core.internal.network.UrlUtils.urlEncode;
 
 public class MakePostActivity extends FragmentActivity {
 
@@ -216,6 +190,7 @@ public class MakePostActivity extends FragmentActivity {
         //Add the URI to the Intent
         instagram.putExtra(Intent.EXTRA_STREAM, imageUri);
         instagram.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        instagram.setPackage("com.instagram.android");
 
         //Broadcast the Intent
         startActivity(Intent.createChooser(instagram, "Share to"));
@@ -305,11 +280,5 @@ public class MakePostActivity extends FragmentActivity {
             }
         }
     }
-
-
-
-
-
-
 
 }
