@@ -12,7 +12,7 @@
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginStart="168dp"
-        android:layout_marginTop="154dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="168dp"
         android:text="Welcome to the Dashboard"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,60 +20,51 @@
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01" />
-
-    <TextView
-        android:id="@+id/userInfo"
-        android:layout_width="62dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="16dp"
-        android:text="Hello!"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/logoutImageBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/logout"
         android:onClick="logout"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="@+id/userInfo"
-        app:layout_constraintTop_toBottomOf="@+id/userInfo"
+        app:layout_constraintStart_toEndOf="@+id/searchBar"
+        app:layout_constraintTop_toTopOf="@+id/searchBar"
         app:srcCompat="@drawable/logout" />
-
-    <Button
-        android:id="@+id/hashtagButton"
-        android:layout_width="130dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/hashtag"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTxt" />
-
-    <Button
-        android:id="@+id/postButton"
-        android:layout_width="130dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/post"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/hashtagButton"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTxt" />
 
     <Button
         android:id="@+id/storyButton"
         android:layout_width="130dp"
         android:layout_height="100dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/story"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postButton" />
+
+    <Button
+        android:id="@+id/postButton"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="104dp"
+        android:background="@drawable/post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toEndOf="@+id/hashtagButton"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTxt" />
+
+    <Button
+        android:id="@+id/hashtagButton"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="104dp"
+        android:background="@drawable/hashtag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTxt" />
 
     <SearchView
         android:id="@+id/searchBar"
@@ -82,8 +73,8 @@
         android:layout_marginTop="16dp"
         android:background="#FDFFFB"
         android:foregroundTint="#FFFFFF"
-        android:inputType="text"
 
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"

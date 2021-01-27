@@ -12,7 +12,6 @@
         android:layout_width="108dp"
         android:layout_height="80dp"
         android:layout_marginStart="144dp"
-        android:layout_marginTop="4dp"
         android:button="@drawable/twittericon"
         android:checked="false"
         android:contextClickable="false"
@@ -43,7 +42,6 @@
         android:layout_width="108dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
         android:button="@drawable/instagramicon"
         android:checked="false"
         android:contextClickable="false"
@@ -80,6 +78,7 @@
 
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@android:drawable/ic_menu_camera"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@+id/storyImageView"
         app:layout_constraintStart_toStartOf="parent"
