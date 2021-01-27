@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,8 +30,6 @@ import static com.example.smnaggregator.BuildConfig.twittersecret;
 public class SearchHashtagActivity extends AppCompatActivity {
 
     private static final String TAG = "SearchHashtagActivity";
-    private static final String REMOTE_API = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +40,35 @@ public class SearchHashtagActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String hashTag = extras.getString("hashtag");
 
-        //  GetHashtags getHashtags = new GetHashtags(hashTag);
-        // getHashtags.execute();
-
         Log.d(TAG, "onCreate: Starting download of trending hashtags");
 
-        ListView postListView = findViewById(R.id.searchHashtagList);
+        ListView hashtagListView = findViewById(R.id.searchHashtagList);
 
-        PostArrayAdapter postArrayAdapter = new PostArrayAdapter(this,
-                R.layout.activity_chosen_tweet,
+        HashtagArrayAdapter hashtagArrayAdapter = new HashtagArrayAdapter(this,
+                R.layout.list_record2,
                 new ArrayList<>(),
-                postListView);
+                hashtagListView);
 
         String remoteUrl = "https://api.twitter.com/1.1/search/tweets.json?id=23424833&lang=el&q=%23" + hashTag + "&include_entities=true";
-        GetDataTask getDataTaskObject = new GetDataTask(postArrayAdapter);
-        getDataTaskObject.execute(remoteUrl);
+       // GetDataTask getDataTaskObject = new GetDataTask(postArrayAdapter);
+      //  getDataTaskObject.execute(remoteUrl);
+
+        GetHashtags getHashtags = new GetHashtags(hashtagArrayAdapter);
+        getHashtags.execute(remoteUrl);
+        /*
+        hashtagListView.setOnItemClickListener((parent, view, position, id) -> {
+            TextView clickedView = view.findViewById(R.id.hahshtagURL);
+            String clickedUrl = (String) clickedView.getText();
+            try {
+                startActivity(new Intent(ACTION_VIEW, Uri.parse(clickedUrl)));
+                Log.d(TAG,"Connection with the twitter app succeed");
+            } catch (ActivityNotFoundException e) {
+                e.printStackTrace();
+                Log.e(TAG,"Connection with twitter App failed");
+            }
+        });*/
+
+        Log.d(TAG,"Started Async Request Execution for web service data");
 
 
     }

@@ -1,84 +1,171 @@
 package com.example.smnaggregator;
 
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.smnaggregator.BuildConfig.twitterkey;
+import static com.example.smnaggregator.BuildConfig.twittersecret;
 
-public class GetHashtags extends AsyncTask<String, Void, Void> {
+
+public class GetHashtags extends AsyncTask<String, Void, List<Hashtag>> {
     private String hashTag;
+    public static final String TAG = "SpecificHashtagSearch";
 
-    public GetHashtags(String hastTag) {
-        this.hashTag = hashTag;
+    public List<Hashtag> hashtagList;
+    private HashtagArrayAdapter adapter;
+    public GetHashtags(HashtagArrayAdapter adapter) {
+        this.adapter=adapter;
     }
 
+    public String downloadRestData(String remoteUrl) {
+
+        Log.d(TAG, "Downloading data....");
+        StringBuilder sb = new StringBuilder();
+        HttpURLConnection httpConnection = null;
+        BufferedReader bufferedReader = null;
+        StringBuilder response = new StringBuilder();
+
+
+        try {
+            URL url = new URL(remoteUrl);
+            httpConnection = (HttpURLConnection) url.openConnection();
+            httpConnection.setRequestMethod("GET");
+
+            String jsonString = appAuthentication();
+            JSONObject jsonObjectDocument = new JSONObject(jsonString);
+            String token = jsonObjectDocument.getString("token_type") + " "
+                    + jsonObjectDocument.getString("access_token");
+            httpConnection.setRequestProperty("Authorization", token);
+            httpConnection.setRequestProperty("Content-Type",
+                    "application/json; charset = UTF-8");
+            httpConnection.connect();
+
+            bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream()));
+
+            String line=bufferedReader.readLine();
+            while (line != null){
+                response.append(line).append("\n");
+                line=bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            Log.d(TAG,
+                    "GET response code: "
+                            + String.valueOf(httpConnection
+                            .getResponseCode()));
+            Log.d(TAG, "JSON response: " + response.toString());
+
+        } catch (Exception e) {
+            Log.e(TAG, "GET error: " + Log.getStackTraceString(e));
+
+        } finally {
+            if (httpConnection != null) {
+                httpConnection.disconnect();
+
+            }
+        }
+        return response.toString();
+    }
 
 
     @Override
-    protected Void doInBackground(String... strings) {
-       return null;
+    protected List<Hashtag> doInBackground(String... strings) {
+        String url = strings[0];
+        Log.d(TAG, "Doing task in background for url "+url);
+
+        String hashtagJson = downloadRestData(url);
+
+        JsonParserHashtags jsonParser = new JsonParserHashtags();
+        return jsonParser.parseHashtagData(hashtagJson);
     }
 
+    @Override
+    protected void onPostExecute(List<Hashtag> hashtags) {
+        hashtagList =  hashtags;
+        Log.d(TAG, "Just got results!");
 
-    public class HashTagParser{
-        public static final String TAG = "HashTagParser";
+        for(Hashtag hashtag : hashtagList) {
+            Log.d(TAG, hashtag.toString());
+        }
 
-        private static final String NAME_LITERAL = "name";
-        private static final String URL_LITERAL = "url";
-        private static final String PROMOTED_CONTENT_LITERAL = "promoted_content";
-        private static final String QUERY_LITERAL = "query";
-        private static final String TWEET_VOLUME_LITERAL = "tweet_volume";
+        adapter.setHashtagList(hashtagList);
 
-        public List<Post> parsePostData(String postJsonData) {
+    }
 
-            List<Post> postList = new ArrayList<>();
+    public List<Hashtag> getHashtagList() {
+        return hashtagList;
+    }
 
+    public static String appAuthentication() {
 
-            try {
+        HttpURLConnection httpConnection = null;
+        OutputStream outputStream = null;
+        BufferedReader bufferedReader = null;
+        StringBuilder response = null;
 
-                JSONArray jsonPostArray = new JSONArray(postJsonData);
-                // get the first object of the root Array//
-                JSONObject postJsonObject = jsonPostArray.getJSONObject(0);
-                //get the trend property (Array) of the object//
-                JSONArray trendsArray = new JSONArray(postJsonObject.getString("trends"));
-                //loop the trends Array and get its properties//
-                for (int i = 0; i < trendsArray.length(); i++) {
-                    JSONObject trendsObject = trendsArray.getJSONObject(i);
+        try {
+            URL url = new URL(ConstantsUtils.URL_AUTHENTICATION);
+            httpConnection = (HttpURLConnection) url.openConnection();
+            httpConnection.setRequestMethod("POST");
+            httpConnection.setDoOutput(true);
+            httpConnection.setDoInput(true);
 
-                    String name = trendsObject.getString(NAME_LITERAL);
-                    String url = trendsObject.getString(URL_LITERAL);
-                    String promotedContent = trendsObject.getString(PROMOTED_CONTENT_LITERAL);
-                    String query = trendsObject.getString(QUERY_LITERAL);
-                    String tweetVolume = trendsObject.getString(TWEET_VOLUME_LITERAL);
+            String accessCredential = twitterkey + ":"
+                    + twittersecret;
+            String authorization = "Basic "
+                    + Base64.encodeToString(accessCredential.getBytes(),
+                    Base64.NO_WRAP);
+            String param = "grant_type=client_credentials";
 
-                    Post post = new Post();
-                    post.setUrl(url);
-                    post.setName(name);
-                    post.setPromotedContent(promotedContent);
-                    post.setQuery(query);
-                    post.setTweetVolume(tweetVolume);
+            httpConnection.addRequestProperty("Authorization", authorization);
+            httpConnection.setRequestProperty("Content-Type",
+                    "application/x-www-form-urlencoded;charset=UTF-8");
+            httpConnection.connect();
 
-                    postList.add(post);
+            outputStream = httpConnection.getOutputStream();
+            outputStream.write(param.getBytes());
+            outputStream.flush();
+            outputStream.close();
+            // int statusCode = httpConnection.getResponseCode();
+            // String reason =httpConnection.getResponseMessage();
 
+            bufferedReader = new BufferedReader(new InputStreamReader(
+                    httpConnection.getInputStream()));
+            String line;
+            response = new StringBuilder();
 
-
-                }
-
-            } catch (JSONException ex) {
-                Log.e(TAG, "Error in json parsing", ex);
+            while ((line = bufferedReader.readLine()) != null) {
+                response.append(line);
             }
 
-            return postList;
+            Log.d(TAG,
+                    "POST response code: "
+                            + String.valueOf(httpConnection.getResponseCode()));
+            Log.d(TAG, "JSON response: " + response.toString());
 
+        } catch (Exception e) {
+            Log.e(TAG, "POST error: " + Log.getStackTraceString(e));
+
+        } finally {
+            if (httpConnection != null) {
+                httpConnection.disconnect();
+            }
         }
+        return response.toString();
     }
-
 
 }
 

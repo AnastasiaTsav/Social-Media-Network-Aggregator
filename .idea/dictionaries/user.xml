@@ -2,6 +2,7 @@
   <dictionary name="user">
     <words>
       <w>hashtag</w>
+      <w>hashtags</w>
       <w>twitterkey</w>
       <w>twittersecret</w>
     </words>
