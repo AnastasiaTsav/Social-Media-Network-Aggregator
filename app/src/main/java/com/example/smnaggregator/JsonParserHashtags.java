@@ -2,6 +2,10 @@ package com.example.smnaggregator;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,25 +28,23 @@ public class JsonParserHashtags {
         List<Hashtag> hashtagList = new ArrayList<>();
 
         try {
-            JSONArray jsonHashtagArray = new JSONArray(hashtagJsonData);
-            // get the first object of the root Array//
-            JSONObject hashtagJsonObject = jsonHashtagArray.getJSONObject(0);
-            //get the trend property (Array) of the object//
-            JSONArray tweetsArray = new JSONArray(hashtagJsonObject.getString("statuses"));
-            //loop the trends Array and get its properties//
-            for (int i = 0; i < tweetsArray.length(); i++) {
-                JSONObject trendsObject = tweetsArray.getJSONObject(i);
+            JSONObject root = new JSONObject(hashtagJsonData);
+            JSONArray jsonHashtagArray = root.getJSONArray("statuses");
 
-                String createdAt = hashtagJsonObject.getString(CREATED_AT);
-                String id = hashtagJsonObject.getString(ID);
-                String id_str = hashtagJsonObject.getString(ID_STR);
-                String text = hashtagJsonObject.getString(TEXT);
-                String truncated = hashtagJsonObject.getString(TRUNCATED);
-                String entities = hashtagJsonObject.getString(ENTITIES);
+
+            for (int i = 0; i < jsonHashtagArray.length(); i++) {
+                JSONObject tweetsObject = jsonHashtagArray.getJSONObject(i);
+
+                String createdAt = tweetsObject.getString(CREATED_AT);
+                String id = tweetsObject.getString(ID);
+                String id_str = tweetsObject.getString(ID_STR);
+                String text = tweetsObject.getString(TEXT);
+                String truncated = tweetsObject.getString(TRUNCATED);
+                String entities = tweetsObject.getString(ENTITIES);
 
 
                 Hashtag hashtag = new Hashtag();
-                hashtag.setCreatedAt(createdAt);
+                //hashtag.setCreatedAt(createdAt);
                 hashtag.setText(text);
 
                 hashtagList.add(hashtag);

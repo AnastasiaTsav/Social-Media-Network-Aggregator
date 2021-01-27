@@ -55,19 +55,18 @@ public class HashtagArrayAdapter extends ArrayAdapter<Hashtag> {
 
 
 
-        viewHolder.createdAt.setText(currentTweet.getCreatedAt()+"");
         viewHolder.text.setText(currentTweet.getText()+"");
 
         return convertView;
     }
 
     private class ViewHolder{
-        final TextView createdAt;
+
         final TextView text;
 
 
         ViewHolder(View view){
-            createdAt = view.findViewById(R.id.createdAt);
+
             text = view.findViewById(R.id.tweetText);
 
         }
