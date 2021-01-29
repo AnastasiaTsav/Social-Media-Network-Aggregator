@@ -30,7 +30,7 @@ public class JsonParserHashtags {
                 JSONArray urlsArray = entity.getJSONArray("urls");
                 for (int j=0; j < urlsArray.length();j++){
                     JSONObject urlObj = urlsArray.getJSONObject(j);
-                    url = urlObj.getString("expanded_url");
+                    url = urlObj.getString("url");
                 }
 
                 Hashtag hashtag = new Hashtag();
