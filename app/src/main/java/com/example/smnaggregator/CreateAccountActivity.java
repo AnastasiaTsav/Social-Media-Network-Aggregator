@@ -33,6 +33,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate starts");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         createEmail = findViewById(R.id.emailText);
         createPassword = (EditText) findViewById(R.id.PasswwordInput);

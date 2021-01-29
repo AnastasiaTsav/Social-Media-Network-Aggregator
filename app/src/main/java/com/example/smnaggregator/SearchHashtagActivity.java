@@ -19,7 +19,7 @@ public class SearchHashtagActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chosen_tweet);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //receive the query from the searchIntent
         Bundle extras = getIntent().getExtras();
         String hashTag = extras.getString("hashtag");

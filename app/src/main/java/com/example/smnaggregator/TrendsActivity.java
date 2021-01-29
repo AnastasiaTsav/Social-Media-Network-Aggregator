@@ -24,7 +24,8 @@ public class TrendsActivity extends AppCompatActivity {
                 Log.d(TAG,"onCreate: Starting download of trending hashtags");
 
                 ListView postListView = findViewById(R.id.listview);
-
+                //homebutton
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 PostArrayAdapter postArrayAdapter = new PostArrayAdapter(this,
                         R.layout.list_record,
                         new ArrayList<>(),

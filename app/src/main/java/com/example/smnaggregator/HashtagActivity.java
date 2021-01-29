@@ -36,7 +36,7 @@ public class HashtagActivity extends AppCompatActivity implements Serializable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //This code must be entering before the setContentView to make the twitter login work...
         TwitterAuthConfig mTwitterAuthConfig = new TwitterAuthConfig(twitterkey, twittersecret);
 

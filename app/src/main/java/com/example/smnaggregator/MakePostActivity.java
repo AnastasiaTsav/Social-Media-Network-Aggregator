@@ -18,6 +18,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -34,7 +35,7 @@ import com.facebook.share.widget.ShareDialog;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 import static com.facebook.appevents.AppEventsLogger.getUserData;
 
-public class MakePostActivity extends FragmentActivity {
+public class MakePostActivity  extends AppCompatActivity {
 
     private static final String TAG = "MakePostActivity";
 
@@ -63,7 +64,7 @@ public class MakePostActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_post);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         contentTxt = findViewById(R.id.makePostTxt);
         addImageBtn = findViewById(R.id.addImageButton);
         imageView = findViewById(R.id.imageView);

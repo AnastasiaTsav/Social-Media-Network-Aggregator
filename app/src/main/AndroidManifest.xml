@@ -20,17 +20,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SMNAggregator"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TwitterLoginActivity"></activity>
-        <activity android:name=".MakeStoryActivity" />
+
+        <activity android:name=".MakeStoryActivity"
+            android:parentActivityName=".MenuActivity"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".MakePostActivity" />
-        <activity android:name=".SearchHashtagActivity" />
-        <activity android:name=".TrendsActivity" />
-        <activity android:name=".HashtagActivity" />
+        <activity android:name=".MakePostActivity"
+            android:parentActivityName=".MenuActivity"/>
+
+        <activity android:name=".SearchHashtagActivity"
+            android:parentActivityName=".MenuActivity"/>
+
+        <activity android:name=".TrendsActivity"
+            android:parentActivityName=".MenuActivity"
+            />
+        <activity android:name=".HashtagActivity"
+            android:parentActivityName=".MenuActivity"/>
         <activity android:name=".Login_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +47,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuActivity" />
-        <activity android:name=".CreateAccountActivity" />
+        <activity android:name=".CreateAccountActivity"
+            android:parentActivityName=".Login_Activity"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -61,7 +70,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateAccountActivity" />
+
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
