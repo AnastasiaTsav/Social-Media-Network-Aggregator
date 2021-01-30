@@ -1,4 +1,5 @@
 package com.example.smnaggregator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ public class HashtagArrayAdapter extends ArrayAdapter<Hashtag> {
     private final LayoutInflater inflater;
     private final int layoutResource;
 
-    private ListView hashtagListView;
+    private final ListView hashtagListView;
 
 
     public HashtagArrayAdapter(@NonNull Context context, int resource, @NonNull List<Hashtag> objects, ListView listView) {
@@ -30,6 +31,7 @@ public class HashtagArrayAdapter extends ArrayAdapter<Hashtag> {
         hashtagListView= listView;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -55,7 +57,7 @@ public class HashtagArrayAdapter extends ArrayAdapter<Hashtag> {
         return convertView;
     }
 
-    private class ViewHolder{
+    private static class ViewHolder{
 
         final TextView text;
         final TextView url;

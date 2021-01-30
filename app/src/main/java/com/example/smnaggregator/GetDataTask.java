@@ -20,7 +20,7 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
     public static final String TAG2 = "TwitterUtils";
 
     public List<Post> postList;
-    private PostArrayAdapter adapter;
+    private final PostArrayAdapter adapter;
     public GetDataTask (PostArrayAdapter adapter){
         this.adapter=adapter;
     }
@@ -28,9 +28,8 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
     public String downloadRestData(String remoteUrl) {
 
         Log.d(TAG, "Downloading data....");
-        StringBuilder sb = new StringBuilder();
         HttpURLConnection httpConnection = null;
-        BufferedReader bufferedReader = null;
+        BufferedReader bufferedReader;
         StringBuilder response = new StringBuilder();
 
 
@@ -58,8 +57,8 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
             bufferedReader.close();
             Log.d(TAG2,
                     "GET response code: "
-                            + String.valueOf(httpConnection
-                            .getResponseCode()));
+                            + httpConnection
+                            .getResponseCode());
             Log.d(TAG2, "JSON response: " + response.toString());
 
         } catch (Exception e) {
@@ -104,8 +103,8 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
     public static String appAuthentication() {
 
         HttpURLConnection httpConnection = null;
-        OutputStream outputStream = null;
-        BufferedReader bufferedReader = null;
+        OutputStream outputStream;
+        BufferedReader bufferedReader;
         StringBuilder response = null;
 
         try {
@@ -143,7 +142,7 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
 
             Log.d(TAG2,
                     "POST response code: "
-                            + String.valueOf(httpConnection.getResponseCode()));
+                            + httpConnection.getResponseCode());
             Log.d(TAG2, "JSON response: " + response.toString());
 
         } catch (Exception e) {
@@ -154,6 +153,7 @@ public class GetDataTask extends AsyncTask<String, Void, List<Post>> {
                 httpConnection.disconnect();
             }
         }
+        assert response != null;
         return response.toString();
     }
 

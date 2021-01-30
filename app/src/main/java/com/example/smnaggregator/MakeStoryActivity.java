@@ -1,6 +1,7 @@
 package com.example.smnaggregator;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -29,13 +30,18 @@ import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.ShareStoryContent;
 import com.facebook.share.widget.ShareDialog;
 
+import java.util.Objects;
+
 public class MakeStoryActivity extends AppCompatActivity {
 
     private static final String TAG = "MakeStoryActivity";
     private ImageView storyImage;
     private ImageButton addImageStoryBtn;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch fbStory;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch instagramStory;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch twitterStory;
     private Button shareStory;
 
@@ -53,7 +59,7 @@ public class MakeStoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_make_story);
 
         storyImage = findViewById(R.id.storyImageView);
@@ -69,21 +75,15 @@ public class MakeStoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //check runtime permission
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                            == PackageManager.PERMISSION_DENIED) {
-                        //permission not granted, request it.
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                        //show popup for runtime permission
-                        requestPermissions(permissions, PERMISSION_CODE);
-                    } else {
-                        //permission already granted
-                        pickImageFromGallery();
-                    }
+                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_DENIED) {
+                    //permission not granted, request it.
+                    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                    //show popup for runtime permission
+                    requestPermissions(permissions, PERMISSION_CODE);
                 } else {
-                    //system os is less than marshmallow
+                    //permission already granted
                     pickImageFromGallery();
-
                 }
             }
 
@@ -100,7 +100,7 @@ public class MakeStoryActivity extends AppCompatActivity {
                         BitmapDrawable bitmapDrawable = (BitmapDrawable) storyImage.getDrawable();
                         Bitmap image = bitmapDrawable.getBitmap();
 
-                        if(shareDialog.canShow(ShareStoryContent.class)){
+                        if(ShareDialog.canShow(ShareStoryContent.class)){
                             SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
                             //add to ShareStoryContent
                             ShareStoryContent shareStoryContent = new ShareStoryContent.Builder().setBackgroundAsset(photo).build();
@@ -230,12 +230,7 @@ public class MakeStoryActivity extends AppCompatActivity {
     protected boolean checkPermission()
     {
         int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED)
-        {
-            return true;
-        } else {
-            return false;
-        }
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 
 }

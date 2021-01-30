@@ -16,11 +16,11 @@ import static com.example.smnaggregator.BuildConfig.twittersecret;
 
 
 public class GetHashtags extends AsyncTask<String, Void, List<Hashtag>> {
-    private String hashTag;
+
     public static final String TAG = "SpecificHashtagSearch";
 
     public List<Hashtag> hashtagList;
-    private HashtagArrayAdapter adapter;
+    private final HashtagArrayAdapter adapter;
     public GetHashtags(HashtagArrayAdapter adapter) {
         this.adapter=adapter;
     }
@@ -28,17 +28,15 @@ public class GetHashtags extends AsyncTask<String, Void, List<Hashtag>> {
     public String downloadRestData(String remoteUrl) {
 
         Log.d(TAG, "Downloading data....");
-        StringBuilder sb = new StringBuilder();
         HttpURLConnection httpConnection = null;
-        BufferedReader bufferedReader = null;
+        BufferedReader bufferedReader;
         StringBuilder response = new StringBuilder();
-
 
         try {
             URL url = new URL(remoteUrl);
             httpConnection = (HttpURLConnection) url.openConnection();
             httpConnection.setRequestMethod("GET");
-
+            //make app authentication with our keys in order to get results
             String jsonString = appAuthentication();
             JSONObject jsonObjectDocument = new JSONObject(jsonString);
             String token = jsonObjectDocument.getString("token_type") + " "
@@ -58,8 +56,8 @@ public class GetHashtags extends AsyncTask<String, Void, List<Hashtag>> {
             bufferedReader.close();
             Log.d(TAG,
                     "GET response code: "
-                            + String.valueOf(httpConnection
-                            .getResponseCode()));
+                            + httpConnection
+                            .getResponseCode());
             Log.d(TAG, "JSON response: " + response.toString());
 
         } catch (Exception e) {
@@ -106,8 +104,8 @@ public class GetHashtags extends AsyncTask<String, Void, List<Hashtag>> {
     public static String appAuthentication() {
 
         HttpURLConnection httpConnection = null;
-        OutputStream outputStream = null;
-        BufferedReader bufferedReader = null;
+        OutputStream outputStream;
+        BufferedReader bufferedReader;
         StringBuilder response = null;
 
         try {
@@ -145,7 +143,7 @@ public class GetHashtags extends AsyncTask<String, Void, List<Hashtag>> {
 
             Log.d(TAG,
                     "POST response code: "
-                            + String.valueOf(httpConnection.getResponseCode()));
+                            + httpConnection.getResponseCode());
             Log.d(TAG, "JSON response: " + response.toString());
 
         } catch (Exception e) {
@@ -156,6 +154,7 @@ public class GetHashtags extends AsyncTask<String, Void, List<Hashtag>> {
                 httpConnection.disconnect();
             }
         }
+        assert response != null;
         return response.toString();
     }
 

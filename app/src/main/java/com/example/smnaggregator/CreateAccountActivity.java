@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class CreateAccountActivity extends AppCompatActivity {
 
     private static final String TAG = "CreateAccountActivity";
@@ -33,10 +35,10 @@ public class CreateAccountActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate starts");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         createEmail = findViewById(R.id.emailText);
-        createPassword = (EditText) findViewById(R.id.PasswwordInput);
+        createPassword = findViewById(R.id.PasswwordInput);
         confPassword = findViewById(R.id.ConfirmPassword);
         //initialize firebase Auth
         mAuth = FirebaseAuth.getInstance();

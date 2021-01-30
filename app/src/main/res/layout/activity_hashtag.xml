@@ -8,14 +8,14 @@
     tools:context=".HashtagActivity">
 
     <com.twitter.sdk.android.core.identity.TwitterLoginButton
-        android:id="@+id/twitterLoginBtn"
+        android:id="@+id/LoginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="MissingConstraints" />
@@ -25,8 +25,12 @@
         android:layout_width="240dp"
         android:layout_height="120dp"
         android:layout_marginTop="144dp"
+        android:fontFamily="serif"
         android:text="You need to be connected to Twitter in order to use this feature"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
         android:textSize="26sp"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

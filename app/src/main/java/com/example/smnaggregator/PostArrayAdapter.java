@@ -1,5 +1,6 @@
 package com.example.smnaggregator;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ public class PostArrayAdapter extends ArrayAdapter<Post> {
     private final LayoutInflater inflater;
     private final int layoutResource;
 
-    private ListView postListView;
+    private final ListView postListView;
 
 
     public PostArrayAdapter(@NonNull Context context, int resource, @NonNull List<Post> objects, ListView listView) {
@@ -32,6 +33,7 @@ public class PostArrayAdapter extends ArrayAdapter<Post> {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -50,7 +52,6 @@ public class PostArrayAdapter extends ArrayAdapter<Post> {
         }
 
         Post currentPost = postList.get(position);
-        String q = currentPost.getQuery();
 
         viewHolder.name.setText(currentPost.getName()+"");
         viewHolder.url.setText(currentPost.getUrl()+"");
@@ -59,7 +60,7 @@ public class PostArrayAdapter extends ArrayAdapter<Post> {
         return convertView;
     }
 
-    private class ViewHolder{
+    private static class ViewHolder{
         final TextView name;
         final TextView url;
 

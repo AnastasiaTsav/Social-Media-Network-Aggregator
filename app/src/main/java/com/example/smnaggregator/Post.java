@@ -24,10 +24,6 @@ public class Post {
         this.url = url;
     }
 
-    public String getPromotedContent() {
-        return promotedContent;
-    }
-
     public void setPromotedContent(String promotedContent) {
         this.promotedContent = promotedContent;
     }
@@ -39,9 +35,7 @@ public class Post {
     public void setQuery(String query) {
         this.query = query;
     }
-    public String getTweetVolume() {
-        return tweetVolume;
-    }
+
     public void setTweetVolume(String tweetVolume) {
         this.tweetVolume = tweetVolume;
     }

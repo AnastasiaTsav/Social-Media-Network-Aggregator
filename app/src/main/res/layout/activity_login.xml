@@ -26,6 +26,7 @@
 
         android:layout_marginTop="32dp"
         android:background="@drawable/header3"
+        android:cursorVisible="false"
         android:drawableLeft="@android:drawable/ic_secure"
         android:ems="10"
         android:hint="Password"
@@ -59,12 +60,13 @@
         android:layout_width="229dp"
         android:layout_height="28dp"
         android:layout_marginTop="32dp"
+        android:fontFamily="cursive"
         android:text="Login with email"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#2B1616"
-        android:textSize="18sp"
-        android:textStyle="italic"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_txt" />
@@ -75,22 +77,26 @@
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:background="#0003A9F4"
+        android:fontFamily="cursive"
         android:text="SMN Aggregator"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="#7A0000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#530000"
         android:textSize="36sp"
         android:textStyle="bold"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/twitterLoginBtn"
+        android:id="@+id/LoginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="Login Now"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,13 +108,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:autoText="false"
-        android:background="#00FFFFFF"
+        android:background="#00200101"
+        android:backgroundTint="#490202"
+        android:fontFamily="casual"
         android:text="I DON'T HAVE AN ACCOUNT"
-        android:textColor="#FD0303"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#970404"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/twitterLoginBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

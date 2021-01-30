@@ -51,7 +51,8 @@
         android:textColor="#0B0B0B"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/emailText"
-        app:layout_constraintTop_toBottomOf="@+id/emailText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailText"
+        tools:visibility="visible" />
 
     <EditText
         android:id="@+id/emailText"
@@ -77,12 +78,14 @@
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="#0003A9F4"
+        android:fontFamily="cursive"
         android:text="SMN Aggregator"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#7A0000"
         android:textSize="36sp"
         android:textStyle="bold"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -104,12 +107,14 @@
         android:layout_width="229dp"
         android:layout_height="28dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
         android:text="Create account with email"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#2B1616"
         android:textSize="18sp"
         android:textStyle="italic"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_txt" />
@@ -120,6 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="casual"
         android:text="CREATE ACCOUNT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

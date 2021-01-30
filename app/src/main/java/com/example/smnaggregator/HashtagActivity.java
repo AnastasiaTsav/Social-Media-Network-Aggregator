@@ -21,6 +21,7 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class HashtagActivity extends AppCompatActivity implements Serializable {
 
@@ -36,7 +37,7 @@ public class HashtagActivity extends AppCompatActivity implements Serializable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         //This code must be entering before the setContentView to make the twitter login work...
         TwitterAuthConfig mTwitterAuthConfig = new TwitterAuthConfig(twitterkey, twittersecret);
 
@@ -50,8 +51,7 @@ public class HashtagActivity extends AppCompatActivity implements Serializable {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        twitterLoginButton = findViewById(R.id.twitterLoginBtn);
-
+        twitterLoginButton = findViewById(R.id.LoginBtn);
 
         mAuthListener = firebaseAuth -> {
             if (firebaseAuth.getCurrentUser() != null){

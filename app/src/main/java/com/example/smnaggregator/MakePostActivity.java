@@ -1,12 +1,12 @@
 package com.example.smnaggregator;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,12 +16,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
+
 import com.bumptech.glide.Glide;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -33,6 +33,9 @@ import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
+
+import java.util.Objects;
+
 import static com.facebook.appevents.AppEventsLogger.getUserData;
 
 public class MakePostActivity  extends AppCompatActivity {
@@ -43,8 +46,11 @@ public class MakePostActivity  extends AppCompatActivity {
     private ImageButton addImageBtn;
     private ImageView imageView;
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch fbSwitchBtn;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch instSwitchBtn;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch twitterSwitchBtn;
 
     private CallbackManager fbManager;
@@ -64,7 +70,7 @@ public class MakePostActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_post);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         contentTxt = findViewById(R.id.makePostTxt);
         addImageBtn = findViewById(R.id.addImageButton);
         imageView = findViewById(R.id.imageView);
@@ -79,21 +85,15 @@ public class MakePostActivity  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //check runtime permission
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                            == PackageManager.PERMISSION_DENIED) {
-                        //permission not granted, request it.
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                        //show popup for runtime permission
-                        requestPermissions(permissions, PERMISSION_CODE);
-                    } else {
-                        //permission already granted
-                        pickImageFromGallery();
-                    }
+                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_DENIED) {
+                    //permission not granted, request it.
+                    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                    //show popup for runtime permission
+                    requestPermissions(permissions, PERMISSION_CODE);
                 } else {
-                    //system os is less than marshmallow
+                    //permission already granted
                     pickImageFromGallery();
-
                 }
             }
         });
@@ -258,28 +258,7 @@ public class MakePostActivity  extends AppCompatActivity {
     protected boolean checkPermission()
     {
         int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED)
-        {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //file
-    protected void requestPermission()
-    {
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE))
-        {
-            Toast.makeText(MakePostActivity.this, "Read External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
-        } else
-        {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            {
-                requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
-            }
-        }
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 
 }

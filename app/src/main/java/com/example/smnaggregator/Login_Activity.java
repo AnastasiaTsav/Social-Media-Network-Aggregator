@@ -32,7 +32,7 @@ public class Login_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginEmail = findViewById(R.id.loginEmail);
-        loginPassword = (EditText) findViewById(R.id.login_password);
+        loginPassword = findViewById(R.id.login_password);
         //initialize firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -42,7 +42,7 @@ public class Login_Activity extends AppCompatActivity {
             finish();
         }
 
-        loginButton=findViewById(R.id.twitterLoginBtn);
+        loginButton=findViewById(R.id.LoginBtn);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

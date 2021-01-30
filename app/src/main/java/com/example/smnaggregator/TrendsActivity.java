@@ -9,6 +9,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import static android.content.Intent.ACTION_VIEW;
 
 public class TrendsActivity extends AppCompatActivity {
@@ -25,7 +27,7 @@ public class TrendsActivity extends AppCompatActivity {
 
                 ListView postListView = findViewById(R.id.listview);
                 //homebutton
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
                 PostArrayAdapter postArrayAdapter = new PostArrayAdapter(this,
                         R.layout.list_record,
                         new ArrayList<>(),
