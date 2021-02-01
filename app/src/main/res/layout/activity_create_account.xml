@@ -112,7 +112,7 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#2B1616"
-        android:textSize="20"
+        android:textSize="20sp"
         android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
