@@ -2,6 +2,9 @@ package com.example.smnaggregator;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -109,6 +112,12 @@ public class MakePostActivity  extends AppCompatActivity {
 
                         BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
                         Bitmap bitmap = bitmapDrawable.getBitmap();
+                        ClipboardManager clipboardManager= (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData data = ClipData.newPlainText("FacebookText",contentTxt.getText().toString());
+                        clipboardManager.setPrimaryClip(data);
+
+                        Toast.makeText(MakePostActivity.this,"Copied to Clipboard",Toast.LENGTH_SHORT).show();
+
 
                         if (shareDialog.canShow(SharePhotoContent.class)){
                             //anoigoyme parathyro me eikona alla to keimeno
