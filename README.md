@@ -1,7 +1,7 @@
 # Social-Media-Network-Aggregator
 
 
-The project is an assesmetnt for University studies (2020-2021)
+The project is an assesment for University studies (2020-2021)
 in Android Studio with Java. We make a
 Social Media Aggregator which allows the user the following actions:
 -See the trending hashtags on twitter in Greece, select one and see details.
